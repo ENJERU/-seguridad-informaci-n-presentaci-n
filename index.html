@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad de la Información - UNAD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 30px 0;
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideIn 0.8s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide:nth-child(2) { animation-delay: 0.2s; }
+        .slide:nth-child(3) { animation-delay: 0.4s; }
+        .slide:nth-child(4) { animation-delay: 0.6s; }
+        .slide:nth-child(5) { animation-delay: 0.8s; }
+        .slide:nth-child(6) { animation-delay: 1.0s; }
+        .slide:nth-child(7) { animation-delay: 1.2s; }
+        .slide:nth-child(8) { animation-delay: 1.4s; }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 2em;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+
+        p, li {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .cover-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            color: white;
+            padding: 60px 40px;
+        }
+
+        .cover-slide h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            -webkit-text-fill-color: white;
+        }
+
+        .student-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .security-icon {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .pillar-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .threat-vs-vuln {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .concept-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .control-item {
+            background: #f1f3f4;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+
+        .bibliography {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 0.95em;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .threat-vs-vuln {
+                grid-template-columns: 1fr;
+            }
+            
+            .pillar-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .slide {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        📊 Presentación Seguridad de la Información
+    </div>
+
+    <div class="presentation-container">
+        <!-- Slide 1: Cover Page -->
+        <div class="slide cover-slide">
+            <div class="security-icon">🔒</div>
+            <h1>Reconociendo la Importancia de la Seguridad de la Información</h1>
+            <div class="student-info">
+                <h3>Universidad Nacional Abierta y a Distancia - UNAD</h3>
+                <p><strong>Curso:</strong> Seguridad de la Información (202016905)</p>
+                <p><strong>Escuela:</strong> Ciencias Básicas, Tecnología e Ingeniería</p>
+                <p><strong>Tarea 1:</strong> Evaluación Inicial</p>
+                <p><strong>Fecha:</strong> Septiembre 2025</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: What is Computer Security -->
+        <div class="slide">
+            <h2>🛡️ ¿Qué es la Seguridad Informática?</h2>
+            <p>La <strong>seguridad informática</strong> es una disciplina multidisciplinaria que se encarga de proteger los sistemas de información, redes, datos y recursos tecnológicos contra amenazas internas y externas.</p>
+            
+            <h3>Objetivos Principales:</h3>
+            <ul>
+                <li><strong>Proteger activos de información:</strong> Salvaguardar datos críticos y sistemas esenciales</li>
+                <li><strong>Mantener operaciones continuas:</strong> Asegurar la disponibilidad de servicios tecnológicos</li>
+                <li><strong>Cumplir normativas:</strong> Adherirse a estándares legales y regulatorios</li>
+                <li><strong>Preservar la reputación:</strong> Evitar incidentes que afecten la confianza organizacional</li>
+            </ul>
+            
+            <p>En el contexto del desarrollo de software, la seguridad informática implica integrar prácticas seguras desde las fases iniciales del ciclo de vida del software para garantizar productos de calidad y confiables.</p>
+        </div>
+
+        <!-- Slide 3: Pillars of Information -->
+        <div class="slide">
+            <h2>🏛️ Pilares de la Información</h2>
+            <p>Los pilares fundamentales de la seguridad de la información forman la base de cualquier estrategia de protección efectiva:</p>
+            
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <h3>🔐 CONFIDENCIALIDAD</h3>
+                    <p>Garantizar que la información solo sea accesible a personas, entidades o procesos autorizados</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>✅ INTEGRIDAD</h3>
+                    <p>Asegurar que la información no sea alterada de manera no autorizada y mantenga su exactitud</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>🌐 DISPONIBILIDAD</h3>
+                    <p>Garantizar que la información y servicios estén accesibles cuando los usuarios autorizados los necesiten</p>
+                </div>
+            </div>
+            
+            <p><strong>Nota importante:</strong> Algunos marcos de seguridad extienden estos pilares incluyendo <em>autenticidad</em> y <em>no repudio</em>, formando lo que se conoce como la "pentarquía de la seguridad".</p>
+        </div>
+
+        <!-- Slide 4: Vulnerability and Threats -->
+        <div class="slide">
+            <h2>⚠️ Vulnerabilidades y Amenazas</h2>
+            
+            <div class="threat-vs-vuln">
+                <div class="concept-box">
+                    <h3>🕳️ VULNERABILIDAD</h3>
+                    <p><strong>Definición:</strong> Debilidad o fallo en un sistema, proceso o control que puede ser explotado por una amenaza.</p>
+                    <p><strong>Ejemplos:</strong></p>
+                    <ul>
+                        <li>Software sin actualizar</li>
+                        <li>Contraseñas débiles</li>
+                        <li>Configuraciones inseguras</li>
+                        <li>Falta de cifrado</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>💥 AMENAZA</h3>
+                    <p><strong>Definición:</strong> Cualquier evento, acción o circunstancia que puede causar daño a un activo de información.</p>
+                    <p><strong>Ejemplos:</strong></p>
+                    <ul>
+                        <li>Ataques de malware</li>
+                        <li>Phishing y ingeniería social</li>
+                        <li>Acceso no autorizado</li>
+                        <li>Desastres naturales</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p><strong>Relación:</strong> Una amenaza explota una vulnerabilidad para materializar un riesgo. Sin vulnerabilidades, las amenazas no pueden causar daño efectivo.</p>
+        </div>
+
+        <!-- Slide 5: Risk Management -->
+        <div class="slide">
+            <h2>📊 Gestión de Riesgos en Seguridad Informática</h2>
+            
+            <p>La gestión de riesgos es un proceso sistemático y continuo que permite a las organizaciones identificar, evaluar y tratar los riesgos de seguridad de manera efectiva.</p>
+            
+            <h3>Proceso de Gestión de Riesgos:</h3>
+            <ol>
+                <li><strong>Identificación de Activos:</strong> Catalogar recursos críticos de información</li>
+                <li><strong>Identificación de Amenazas:</strong> Detectar posibles fuentes de riesgo</li>
+                <li><strong>Evaluación de Vulnerabilidades:</strong> Analizar debilidades existentes</li>
+                <li><strong>Análisis de Riesgo:</strong> Calcular probabilidad e impacto</li>
+                <li><strong>Tratamiento del Riesgo:</strong> Implementar controles apropiados</li>
+                <li><strong>Monitoreo y Revisión:</strong> Supervisión continua del estado de seguridad</li>
+            </ol>
+            
+            <h3>Estrategias de Tratamiento:</h3>
+            <ul>
+                <li><strong>Aceptar:</strong> Tolerar riesgos de bajo impacto</li>
+                <li><strong>Mitigar:</strong> Reducir probabilidad o impacto</li>
+                <li><strong>Transferir:</strong> Compartir riesgo (seguros, tercerización)</li>
+                <li><strong>Evitar:</strong> Eliminar la actividad que genera el riesgo</li>
+            </ul>
+        </div>
+
+        <!-- Slide 6: Security Controls -->
+        <div class="slide">
+            <h2>🔧 Controles de Seguridad</h2>
+            
+            <p>Los controles de seguridad son medidas implementadas para mitigar riesgos y proteger los activos de información. Se clasifican según su función y momento de aplicación.</p>
+            
+            <h3>Por Función:</h3>
+            <div class="controls-grid">
+                <div class="control-item">
+                    <h4>🛡️ PREVENTIVOS</h4>
+                    <p>Evitan que ocurran incidentes</p>
+                    <small>Ej: Firewalls, antivirus, cifrado</small>
+                </div>
+                <div class="control-item">
+                    <h4>🔍 DETECTIVOS</h4>
+                    <p>Identifican incidentes cuando ocurren</p>
+                    <small>Ej: IDS, monitoreo, auditorías</small>
+                </div>
+                <div class="control-item">
+                    <h4>🔨 CORRECTIVOS</h4>
+                    <p>Responden y remedian incidentes</p>
+                    <small>Ej: Respaldos, planes de contingencia</small>
+                </div>
+            </div>
+            
+            <h3>Por Implementación:</h3>
+            <ul>
+                <li><strong>Técnicos:</strong> Soluciones tecnológicas (firewalls, cifrado, autenticación)</li>
+                <li><strong>Administrativos:</strong> Políticas, procedimientos y procesos organizacionales</li>
+                <li><strong>Físicos:</strong> Protección del entorno físico (cerraduras, cámaras, control de acceso)</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: Conclusions -->
+        <div class="slide">
+            <h2>💡 Conclusiones</h2>
+            
+            <ul>
+                <li><strong>Importancia Estratégica:</strong> La seguridad de la información es fundamental para el éxito organizacional en la era digital, protegiendo activos críticos y manteniendo la confianza de los stakeholders.</li>
+                
+                <li><strong>Enfoque Integral:</strong> Los tres pilares (confidencialidad, integridad y disponibilidad) deben considerarse de manera holística, ya que la debilidad en uno afecta la seguridad general del sistema.</li>
+                
+                <li><strong>Gestión Proactiva:</strong> La identificación temprana de vulnerabilidades y amenazas, combinada con una gestión de riesgos efectiva, es clave para prevenir incidentes costosos.</li>
+                
+                <li><strong>Controles Multicapa:</strong> La implementación de controles preventivos, detectivos y correctivos crea un sistema de defensa robusto que protege contra diversas amenazas.</li>
+                
+                <li><strong>Responsabilidad Compartida:</strong> La seguridad efectiva requiere la participación de todos los miembros de la organización, no solo del departamento de TI.</li>
+                
+                <li><strong>Evolución Continua:</strong> Las amenazas evolucionan constantemente, por lo que las estrategias de seguridad deben adaptarse y mejorarse de manera continua.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Bibliography -->
+        <div class="slide">
+            <h2>📚 Bibliografía</h2>
+            
+            <div class="bibliography">
+                <p><strong>Nota:</strong> Esta sección debe completarse con las fuentes específicas del material de estudio proporcionado en el entorno de aprendizaje de la UNAD para el resultado de aprendizaje 1.</p>
+                
+                <h3>Fuentes Sugeridas (Formato APA 7):</h3>
+                
+                <p>Stallings, W., & Brown, L. (2023). <em>Computer security: Principles and practice</em> (5th ed.). Pearson.</p>
+                
+                <p>Whitman, M. E., & Mattord, H. J. (2022). <em>Principles of information security</em> (7th ed.). Cengage Learning.</p>
+                
+                <p>ISO/IEC 27001:2022. (2022). <em>Information security management systems — Requirements</em>. International Organization for Standardization.</p>
+                
+                <p>NIST. (2023). <em>Framework for improving critical infrastructure cybersecurity</em> (Version 1.1). National Institute of Standards and Technology.</p>
+                
+                <p><strong>Instrucciones:</strong> Reemplaza estas referencias con las lecturas específicas asignadas en tu curso de la UNAD, manteniendo el formato APA 7.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+            
+            slides.forEach(slide => {
+                observer.observe(slide);
+            });
+        });
+    </script>
+</body>
+</html>
